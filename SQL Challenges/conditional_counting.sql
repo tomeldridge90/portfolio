@@ -1,3 +1,4 @@
+/*
 -----<<<<<QUESTION>>>>>-----
 
 Given a payment table, which is a part of DVD Rental Sample Database, with the following schema
@@ -36,6 +37,7 @@ jon_count - total number of payments accepted by Jon (staff_id = 2)
 jon_amount - total amount of payments accepted by Jon (staff_id = 2)
 
 -----<<<<<ANSWER>>>>>-----
+*/
 
 WITH jonTable AS 
 (
