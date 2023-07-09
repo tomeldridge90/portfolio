@@ -1,6 +1,6 @@
 """
 This script is intended to scrape the Interface website to download
-pictures of tiles along with some data abuot the images
+pictures of tiles along with some data about the images
 """
 
 import requests
