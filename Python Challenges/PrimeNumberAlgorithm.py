@@ -66,12 +66,7 @@ def only_oddDigPrimes (n):
     return [numPurePrime,lastPurePrime,nearestPurePrime]
 
 
-print(only_oddDigPrimes(20))
-'''
-<<<<<Test Cases>>>>>
-
-test.assert_equals(only_oddDigPrimes(20), [7, 19, 31])
-test.assert_equals(only_oddDigPrimes(40), [9, 37, 53])
-test.assert_equals(only_oddDigPrimes(55), [10, 53, 59])
-test.assert_equals(only_oddDigPrimes(60), [11, 59, 71])
-'''
+assert only_oddDigPrimes(20) == [7, 19, 31]
+assert only_oddDigPrimes(40) == [9, 37, 53]
+assert only_oddDigPrimes(55) == [10, 53, 59]
+assert only_oddDigPrimes(60) == [11, 59, 71]
