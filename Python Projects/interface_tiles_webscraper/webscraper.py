@@ -7,15 +7,41 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import os
-
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-import os
+
+browser = webdriver.Firefox()
+
+def access_main_page():
+    """
+    Launch the browser and navigate through the cookie and location popups
+    """
+    browser.get('https://shop.interface.com/AU/en-AU/carpet-tile/')
+
+    try:
+        element = WebDriverWait(browser, 10).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, 'button[data-event-click="accept"]'))
+        )
+        element.click()
+    except Exception as e:
+        print(e)
+
+    try:
+        element = WebDriverWait(browser, 10).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, 'button[data-event-click="confirm"]'))
+        )
+        element.click()
+    except Exception as e:
+        print(e)
+
+access_main_page()
+
+
+
+"""
 
 def download_image(image_url, target_path):
     response = requests.get(image_url, stream=True)
@@ -23,16 +49,19 @@ def download_image(image_url, target_path):
         with open(target_path, 'wb') as f:
             f.write(response.content)
 
-# Instantiate a browser
-driver = webdriver.Chrome(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
 url = 'https://shop.interface.com/AU/en-AU/carpet-tile/'
 driver.get(url)
 
 soup = BeautifulSoup(driver.page_source, 'lxml')
+print(soup)
 
 # Empty DataFrame to store results
 results = pd.DataFrame(columns=['name', 'color', 'image_path'])
+results.show()
+
+
 
 # Find product elements and iterate over them
 products = soup.find_all('div', class_='product-tile')
@@ -50,3 +79,4 @@ results.to_csv('results.csv', index=False)
 # Close the browser
 driver.quit()
 
+"""
