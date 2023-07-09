@@ -39,7 +39,26 @@ def access_main_page():
 
 access_main_page()
 
+def get_type_link_list():
 
+    for i in range(10):
+        element = WebDriverWait(browser, 10).until(
+                    EC.presence_of_element_located(
+                            (By.CSS_SELECTOR, "a.b-button.m-white.m-has-icon.m-width_full")
+                        )
+                    )
+        browser.execute_script("arguments[0].click();", element)
+
+    soup = BeautifulSoup(browser.page_source, 'html.parser')
+    links = soup.select('a.b-product_tile-link_wrapper:has(span.b-link-secondary.b-product_tile-link)')
+    urls = [link.get('href') for link in links]
+    for url in urls:
+        print(url)
+
+get_type_link_list()
+
+def cycle_through_types(list_of_links: list):
+    pass
 
 """
 
