@@ -65,6 +65,8 @@ def only_oddDigPrimes (n):
             break
     return [numPurePrime,lastPurePrime,nearestPurePrime]
 
+
+print(only_oddDigPrimes(20))
 '''
 <<<<<Test Cases>>>>>
 
