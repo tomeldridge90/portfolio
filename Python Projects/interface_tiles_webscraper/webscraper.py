@@ -41,7 +41,7 @@ def access_main_page():
     except Exception as e:
         print(e)
 
-access_main_page()
+#access_main_page()
 
 def get_type_link_list():
     """
@@ -62,28 +62,47 @@ def get_type_link_list():
 
     return urls
 
+image_data = []
+
 def cycle_through_types(list_of_links: list):
+    base_url =  "https://shop.interface.com"
     for link in list_of_links:
         try:
-            browser.get(link)
+            browser.get(base_url + link)
         except Exception as e:
             print(f"Error accessing {link}: {e}")
         time.sleep(2)
 
-        df = pd.DataFrame(collect_images_and_data(link))
-        print(df)
+        collect_images_and_data(link, image_data)
 
-def collect_images_and_data(html):
+    df = pd.DataFrame(image_data)
+    df.columns = ['Color Name', 'Image URL', 'Collection Name', 'Product Name']
+    df = df.reindex(columns=['Product Name','Collection Name', 'Color Name',  'Image URL'])
+    return df
 
-    response = requests.get(html)
+def collect_images_and_data(html, image_data):
+
+    base_url =  "https://shop.interface.com"
+    complete_url = base_url + html
+
+    response = requests.get(complete_url)
     content = response.content
 
     soup = BeautifulSoup(content, 'html.parser')
     buttons = soup.find_all('button', {'class': 'b-variation_swatch m-swatch'})
-    image_data = []
 
     collection_element = soup.find('a', {'class': 'b-link-secondary b-product_details-collection'})
-    collection_name = collection_element.text.strip()
+    product_name_element = soup.find('h1', {'class': 'b-product_details-name'})
+
+    if collection_element is not None:
+        collection_name = collection_element.text.strip()
+    else:
+        collection_name = "No collection name found"
+
+    if product_name_element is not None:
+        product_name = product_name_element.text.strip()
+    else:
+        product_name = "No collection name found"
 
     for button in buttons:
         color_name = button.get('aria-label')
@@ -94,12 +113,13 @@ def collect_images_and_data(html):
         match = re.search(r"url\('(.+?)'\)", style)
         if match:
             url = match.group(1)
-            image_data.append((color_name, url, collection_name))
+            image_data.append((color_name, url, collection_name, product_name))
     
-    return image_data
-
+    
+qlist = ['/AU/en-AU/carpet-tile/a-cut-above/7274C.html',
+         '/AU/en-AU/carpet-tile/ae310/7921C.html' ]
  
-cycle_through_types(get_type_link_list())
+print(cycle_through_types(qlist))
 
 
 
