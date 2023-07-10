@@ -1,5 +1,5 @@
 """
-This script is intended to scrape the Shaw Contract website to download
+This script is intended to scrape the Milliken website to download
 pictures of tiles along with some data about the images
 """
 
