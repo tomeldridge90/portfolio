@@ -119,7 +119,12 @@ def collect_images_and_data(html, image_data):
 qlist = ['/AU/en-AU/carpet-tile/a-cut-above/7274C.html',
          '/AU/en-AU/carpet-tile/ae310/7921C.html' ]
  
-print(cycle_through_types(qlist))
+def create_output_df():
+    output_df = cycle_through_types(qlist)
+
+    return output_df
+
+
 
 
 
