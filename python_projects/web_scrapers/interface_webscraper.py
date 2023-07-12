@@ -115,7 +115,7 @@ def collect_images_and_data(html, image_data):
             image_data.append((color_name, url, collection_name, product_name))
     
     
-qlist = ['/AU/en-AU/carpet-tile/a-cut-above/7274C.html',
+qlist = ['/AU/en-AU/carpet-tile/b601/7414C.html',
          '/AU/en-AU/carpet-tile/ae310/7921C.html' ]
  
 def create_output_df():
