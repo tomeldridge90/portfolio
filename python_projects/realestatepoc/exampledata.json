@@ -1,0 +1,23 @@
+[
+    {
+        "postcode": "90210",
+        "average_sale_price": 1850000,
+        "crime_rate": 0.02,
+        "population": 21000,
+        "average_income": 130000
+    },
+    {
+        "postcode": "10001",
+        "average_sale_price": 1900000,
+        "crime_rate": 0.03,
+        "population": 23000,
+        "average_income": 120000
+    },
+    {
+        "postcode": "33131",
+        "average_sale_price": 1750000,
+        "crime_rate": 0.025,
+        "population": 15000,
+        "average_income": 125000
+    }
+]
