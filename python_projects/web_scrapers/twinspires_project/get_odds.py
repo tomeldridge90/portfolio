@@ -8,9 +8,11 @@ import time
 from selenium.common.exceptions import TimeoutException
 import pandas as pd
 from bs4 import BeautifulSoup
+from selenium.webdriver.firefox.options import Options
 
-
-driver = webdriver.Firefox()
+options = Options()
+options.headless = True
+driver = webdriver.Firefox(options=options)
 
 
 retry_count = 3
